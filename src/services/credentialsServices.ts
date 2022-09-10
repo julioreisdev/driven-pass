@@ -34,7 +34,7 @@ export async function findCredentialsUserService(userId: number) {
         return {credentials, message: 'Credentials list is empty!'}
     }
     const credentialsList = credentials.map((c: ICredentialResult) => {
-        return {title: c.title, url: c.url, username: c.username, password: decrypt(`${c.password}`)}
+        return {id: c.id,title: c.title, url: c.url, username: c.username, password: decrypt(`${c.password}`)}
     })
     return {credentials: credentialsList}
 }
@@ -45,7 +45,7 @@ export async function findCredentialUserByIdService(userId: number, id: number) 
         throw { type: 'not_found', message: 'Credential not found' }
     }
     const credentialsView = credential.map((c: ICredentialResult) => {
-        return {title: c.title, url: c.url, username: c.username, password: decrypt(`${c.password}`)}
+        return {id: c.id, title: c.title, url: c.url, username: c.username, password: decrypt(`${c.password}`)}
     })
     return credentialsView
 }
