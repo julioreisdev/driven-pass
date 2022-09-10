@@ -13,6 +13,10 @@ async function findSessionByUserId(id: number) {
     return await connection.sessions.findUnique({where: {userId: id}})
 }
 
+async function findSessionByToken(token: string) {
+    return await connection.sessions.findUnique({where: {token: token}})
+}
+
 async function addSession(data: IToken) {
     return await connection.sessions.create({data: {userId: data.userId, token: data.token}})
 }
@@ -25,6 +29,7 @@ const authRepository = {
     register,
     findByEmail,
     findSessionByUserId,
+    findSessionByToken,
     addSession,
     updateSession
 }

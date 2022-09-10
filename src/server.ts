@@ -2,12 +2,14 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes'
+import credentialsRoutes from './routes/credentialsRoutes'
 
 dotenv.config()
 const server = express()
 server.use(cors(), express.json())
 
 server.use(authRoutes)
+server.use(credentialsRoutes)
 
 const PORT: number = Number(process.env.PORT) ? Number(process.env.PORT) : 5009
 server.listen(PORT, () => {

@@ -3,14 +3,17 @@ import authRepository from "../repositories/authRepository";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { Users } from "@prisma/client";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export async function login(data: IAuth) {
     const existRegister: Users | null = await authRepository.findByEmail(data)
     if (!existRegister || !bcrypt.compareSync(data.password, existRegister.password)) {
-        throw {type: 'unauthorized', message: 'Não autorizado'}
+        throw {type: 'unauthorized', message: 'Incorrect credentials!'}
     }
     const sessionExist =  await authRepository.findSessionByUserId(existRegister.id)
-    const token = jwt.sign({token: data.password}, 'secret')
+    const token = jwt.sign({token: data.password}, `${process.env.SECRET}`)
     const dataSession: IToken = {token: token, userId: existRegister.id}
 
     if (!sessionExist) {
