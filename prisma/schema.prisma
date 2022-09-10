@@ -17,6 +17,7 @@ model Users {
   session Sessions[]
   credentials Credentials[]
   notes Notes[]
+  cards Cards[]
 }
 
 model Sessions {
@@ -42,4 +43,17 @@ model Notes {
   title String
   user Users @relation(fields: [userId], references: [id])
   userId Int
+}
+
+model Cards {
+  id Int @id @default(autoincrement())
+  user Users @relation(fields: [userId], references: [id])
+  userId Int
+  number String
+  name String
+  cvc String
+  expirationDate String
+  password String
+  isVirtual Boolean
+  type String
 }
