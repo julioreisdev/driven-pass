@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,                                         
-    "skipLibCheck": true                                 
+    "skipLibCheck": true         ,
+    "build": "tsc && npx prisma generate && npx prisma migrate deploy"                        
   }
 }
