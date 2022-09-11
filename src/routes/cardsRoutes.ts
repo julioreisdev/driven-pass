@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addCard } from "../controllers/cardsControllers";
+import { addCard, deleteCard, findAllCards, findCard } from "../controllers/cardsControllers";
 import validateSchema from "../middlewares/validateSchema";
 import { validateToken } from "../middlewares/validateToken";
 import cardSchema from "../schemas/cardSchema";
@@ -8,8 +8,8 @@ import cardSchema from "../schemas/cardSchema";
 const router = Router()
 
 router.post('/cards', validateToken, validateSchema(cardSchema), addCard)
-router.get('/notes', validateToken)
-router.get('/cards/:id', validateToken)
-router.delete('/notes/:id', validateToken)
+router.get('/cards', validateToken, findAllCards)
+router.get('/cards/:id', validateToken, findCard)
+router.delete('/cards/:id', validateToken, deleteCard)
 
 export default router

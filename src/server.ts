@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes'
 import credentialsRoutes from './routes/credentialsRoutes'
 import notesRoutes from './routes/notesRoutes'
 import cardsRoutes from './routes/cardsRoutes'
+import wifisRoutes from './routes/wifisRoutes'
 
 dotenv.config()
 const server = express()
@@ -14,6 +15,7 @@ server.use(authRoutes)
 server.use(credentialsRoutes)
 server.use(notesRoutes)
 server.use(cardsRoutes)
+server.use(wifisRoutes)
 
 const PORT: number = Number(process.env.PORT) ? Number(process.env.PORT) : 5009
 server.listen(PORT, () => {
