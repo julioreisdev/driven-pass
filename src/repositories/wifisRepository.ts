@@ -23,7 +23,7 @@ const wifisRepository = {
   insert,
   findAllWifisUser,
   findWifiUser,
-  deleteWifi
+  deleteWifi,
 };
 
 export default wifisRepository;
